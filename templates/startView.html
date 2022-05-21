@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>miniMal</title>
+</head>
+<body>
+    <h1> Привет:, {{my_name}}</h1>
+    <form action="{{url_for('my_route')}}" method="post">
+        <input type="text" size="40" placeholder="коорды" name="coord1">
+        <input type="text" size="40" placeholder="коорды" name="coord2">
+        <p><input type="submit" value="Отправить">
+    </form>
+</body>
+</html>
