@@ -21,3 +21,11 @@ def find_user_by_mail(mail):
     cur = conn.cursor()
     cur.execute('SELECT email, password FROM users WHERE email = %s', (mail, ))
     return cur.fetchone()[1]
+
+
+def find_user_by_id(mail):
+    conn = init_db.get_conn()
+    cur = conn.cursor()
+    cur.execute('SELECT user_id FROM users WHERE email = %s', (mail, ))
+    id = cur.fetchone()[0]
+    return id

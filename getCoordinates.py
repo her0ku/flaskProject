@@ -9,3 +9,9 @@ def get_location(address):
     result = dadata.clean("address", address)
     location = (result['geo_lon'], result['geo_lat'])
     return location
+
+
+def get_coordinates(address):
+    dadata = Dadata(token, secret)
+    result = dadata.clean('address', address)
+    return result['geo_lon'], result['geo_lat']

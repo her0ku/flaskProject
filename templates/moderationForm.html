@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>moderationForm</title>
+</head>
+<body>
+<form action="{{ url_for('send_to_moderation') }}" method="POST">
+    <div>
+        <input type="text" placeholder="Введите адрес" name="address">
+        <select name="type">
+            <option>Ремонт</option>
+            <option>Есть пандус</option>
+            <option>Full inclusivity</option>
+            <option>Внимание</option>
+        </select>
+        <textarea rows="10" cols="45" name="comment" placeholder="Введите комметрий при необходимости"></textarea>
+        <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+    </div>
+</form>
+</body>
+</html>
