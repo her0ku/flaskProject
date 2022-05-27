@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moderator Viewer</title>
+</head>
+<body>
+<html>
+    <body>
+        {% for card in card_info %}
+        <div>
+            <p>ID: {{card[0]}}</p>
+            <p>nickname: {{ card[6] }}</p>
+            <p>Комментарий: {{card[1]}}</p>
+            <p>Тип: {{card[2]}}</p>
+            <p>Адрес: {{card[3]}}</p>
+            <p>Координаты: {{card[4], card[5]}}</p>
+        </div>
+        {% endfor %}
+    </body>
+</html>
+</body>
+</html>

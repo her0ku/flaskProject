@@ -1,3 +1,7 @@
+import collections
+import itertools
+import json
+
 import init_db
 
 
@@ -8,3 +12,11 @@ def send_form_to_moderation(user_id, coordinates_lon, coordinates_lat, comment, 
     conn.commit()
     cur.close()
     conn.close()
+
+
+def get_info_data():
+    conn = init_db.get_conn()
+    cur = conn.cursor()
+    cur.execute('SELECT user_id, annotation, type_event, address, ST_Y(coordinates), ST_X(coordinates) FROM moderation_list')
+    data = map(list, list(cur.fetchall()))
+    return data

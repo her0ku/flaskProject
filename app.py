@@ -7,8 +7,8 @@ import init_db
 import datetime
 import bcrypt
 import secrets
-from sqlLogin import create_user, find_user_by_mail, find_user_by_id
-from sqlCommands import send_form_to_moderation
+from sqlLogin import create_user, find_user_by_mail, find_user_id, find_user_by_id
+from sqlCommands import send_form_to_moderation, get_info_data
 
 token = secrets.token_urlsafe(16)
 app = Flask(__name__)
@@ -67,14 +67,24 @@ async def send_to_moderation():
         return render_template('moderationForm.html')
     if request.method == 'POST':
         name = session['USERNAME']
-        user_id = find_user_by_id(name)
+        user_id = find_user_id(name)
         address = request.form['address']
         coordinates_lon, coordinates_lat = getCoordinates.get_coordinates(address)
         type_event = request.form['type']
         comment = request.form['comment']
         print(coordinates_lon, coordinates_lat)
-        #send_form_to_moderation(user_id, coordinates_lon, coordinates_lat, comment, type_event, address)
+        send_form_to_moderation(user_id, coordinates_lon, coordinates_lat, comment, type_event, address)
         return 'a'
+
+
+@app.get('/moderatorView')
+async def card_view():
+    data = list(get_info_data())
+    for i in data:
+        print(i[0])
+        user_name = find_user_by_id(i[0])
+        i.append(user_name)
+    return render_template('moderatorViewer.html', card_info=data)
 
 
 @app.get('/connection')
@@ -103,6 +113,13 @@ async def my_route():
 async def my_mark():
     mapEngine.add_custom_mark()
     return render_template('marks.html')
+
+
+@app.get('/data')
+async def my_data():
+    res = get_info_data()
+    print(res)
+    return 'res'
 
 
 if __name__ == '__main__':
