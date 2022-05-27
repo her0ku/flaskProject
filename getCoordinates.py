@@ -8,6 +8,7 @@ def get_location(address):
     dadata = Dadata(token, secret)
     result = dadata.clean("address", address)
     location = (result['geo_lon'], result['geo_lat'])
+<<<<<<< HEAD
     return location
 
 
@@ -15,3 +16,6 @@ def get_coordinates(address):
     dadata = Dadata(token, secret)
     result = dadata.clean('address', address)
     return result['geo_lon'], result['geo_lat']
+=======
+    return location
+>>>>>>> 8583930 (Добавил простую регистрацию, потом переделаю, чтобы что-то было, добавить отметки на карте, чтобы круто смотрелось и повысим городскую инклюзивность, пока что всё, потом по хорошему если 2гис ответят перейти к ним))
