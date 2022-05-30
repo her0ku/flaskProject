@@ -22,10 +22,11 @@ def calculate_route(route1, route2):
     map_directions.save('templates/results.html')
 
 
-def add_custom_mark():
+def add_custom_mark(data):
     map_code = folium.Map(location=[55.797326, 37.724291], zoom_start=17)
-    folium.Marker(location=(55.797326, 37.724291), icon=folium.Icon(icon='building', color='green', prefix='fa'),
-                  popup=folium.Popup('aaaa')).add_to(map_code)
+    for i in data:
+        folium.Marker(location=(i[5], i[6]), icon=folium.Icon(icon='building', color='green', prefix='fa'),
+                        popup=folium.Popup('Тип: ' + i[3] + '\nКомментарий: ' + i[2])).add_to(map_code)
     map_code.save('templates/marks.html')
 #es = requests.get('https://maps.openrouteservice.org/#/directions/%D0%9C%D1%8F%D1%81%D0%BD%D0%BE%D0%B2%D1%8A,%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,MS,%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F/%D0%B4%D0%BE%D0%BC%2010,%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%201,%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B8%D0%B5%201%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%A7%D0%B5%D1%80%D0%BA%D0%B8%D0%B7%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%A3%D0%BB%D0%B8%D1%86%D0%B0,%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,MS,%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F')
 #print(res.text)

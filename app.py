@@ -8,7 +8,7 @@ import datetime
 import bcrypt
 import secrets
 from sqlLogin import create_user, find_user_by_mail, find_user_id, find_user_by_id
-from sqlCommands import send_form_to_moderation, get_info_data
+from sqlCommands import send_form_to_moderation, get_info_data, delete_info_card, accept_info_card, get_info_accepted_data
 
 token = secrets.token_urlsafe(16)
 app = Flask(__name__)
@@ -81,10 +81,22 @@ async def send_to_moderation():
 async def card_view():
     data = list(get_info_data())
     for i in data:
-        print(i[0])
-        user_name = find_user_by_id(i[0])
+        user_name = find_user_by_id(i[1])
         i.append(user_name)
     return render_template('moderatorViewer.html', card_info=data)
+
+
+@app.route("/moderatorView/delete/<int:id>", methods=["DELETE"])
+async def delete_card(id):
+    delete_info_card(id)
+    return 'succ'
+
+
+@app.route('/moderatorView/add/<int:id>', methods=['POST'])
+async def add_form(id):
+    print(id)
+    accept_info_card(id)
+    return 'aaaaa'
 
 
 @app.get('/connection')
@@ -111,7 +123,8 @@ async def my_route():
 
 @app.get('/marks')
 async def my_mark():
-    mapEngine.add_custom_mark()
+    data = list(get_info_accepted_data())
+    mapEngine.add_custom_mark(data)
     return render_template('marks.html')
 
 

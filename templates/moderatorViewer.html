@@ -3,21 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Moderator Viewer</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <html>
-    <body>
-        {% for card in card_info %}
-        <div>
-            <p>ID: {{card[0]}}</p>
-            <p>nickname: {{ card[6] }}</p>
-            <p>Комментарий: {{card[1]}}</p>
-            <p>Тип: {{card[2]}}</p>
-            <p>Адрес: {{card[3]}}</p>
-            <p>Координаты: {{card[4], card[5]}}</p>
+<div>
+    <script type="text/javascript">
+        $(function () {
+            $(".del_button").click(function () {
+                var del_id = $(this).attr("id");
+                $.ajax({
+                    type: "DELETE",
+                    url: "/moderatorView/delete/" + del_id,
+                    success: function () {
+                    }
+                });
+                $(this).parents(".record").animate("fast").animate({
+                    opacity: "hide"
+                }, "slow");
+            });
+            $(".add_button").click(function () {
+                var accept_id = $(this).attr("id");
+                $.ajax({
+                    type: "POST",
+                    url: "/moderatorView/add/" + accept_id,
+                    success: function () {
+                    }
+                });
+                $(this).parents(".record").animate("fast").animate({
+                    opacity: "hide"
+                }, "slow");
+            });
+        });
+
+    </script>
+    {% for card in card_info %}
+        <div id="card">
+            <p hidden="true">user_id:{{ card[1] }}</p>
+            <p>nickname: {{ card[7] }}</p>
+            <p>Комментарий: {{ card[2] }}</p>
+            <p>Тип: {{ card[3] }}</p>
+            <p>Адрес: {{ card[4] }}</p>
+            <p>Координаты: {{ card[5], card[6] }}</p>
+            <button id="{{ card[0] }}" class="del_button">Отказ</button>
+            <button id="{{ card[0] }}" class="add_button">Подтвердить</button>
         </div>
-        {% endfor %}
-    </body>
+        <br><br>
+    {% endfor %}
+</body>
 </html>
 </body>
 </html>
