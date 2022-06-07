@@ -16,6 +16,7 @@
                     type: "DELETE",
                     url: "/moderatorView/delete/" + del_id,
                     success: function () {
+                        location.reload();
                     }
                 });
                 $(this).parents(".record").animate("fast").animate({
@@ -28,6 +29,7 @@
                     type: "POST",
                     url: "/moderatorView/add/" + accept_id,
                     success: function () {
+                        location.reload();
                     }
                 });
                 $(this).parents(".record").animate("fast").animate({

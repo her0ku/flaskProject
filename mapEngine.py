@@ -10,11 +10,11 @@ def calculate_route(route1, route2):
     #coords = ((37.724291, 55.797326), (37.723913, 55.798299))
     #coords = ((37.763445, 55.805075), (37.763336, 55.806007))
     path = os.path.join(os.path.abspath(os.path.dirname('templates/')), 'results.html')
-    os.remove(path)
+    #os.remove(path)
     coords = (route1, route2)
     lat = coords[0][0]
     len = coords[0][1]
-    client = openrouteservice.Client(key='5b3ce3597851110001cf62484e0839f873644b94bd8b6d803fafa16c')
+    client = openrouteservice.Client(key='5b3ce3597851110001cf6248d6500bcd34974596b5f7055a5aad3e8d')
     routes = client.directions(coords, profile='wheelchair', optimize_waypoints=True, format='geojson')
     map_directions = folium.Map(location=[len, lat], zoom_start=17)
     folium.GeoJson(routes, name='route').add_to(map_directions)

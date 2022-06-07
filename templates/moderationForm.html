@@ -5,7 +5,7 @@
     <title>moderationForm</title>
 </head>
 <body>
-<form action="{{ url_for('send_to_moderation') }}" method="POST">
+<form action="{{ url_for('send_to_moderation') }}" method="POST" enctype="multipart/form-data">
     <div>
         <input type="text" placeholder="Введите адрес" name="address">
         <select name="type">
@@ -16,6 +16,7 @@
         </select>
         <textarea rows="10" cols="45" name="comment" placeholder="Введите комметрий при необходимости"></textarea>
         <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+        <input type="file" name="file1">
     </div>
 </form>
 </body>

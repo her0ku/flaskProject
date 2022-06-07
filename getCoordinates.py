@@ -1,6 +1,6 @@
 from dadata import Dadata
-token = "2ddf86daf87c4b6cbd59baa17576f2a8e9b48c88"
-secret = "60c33b86efbfbc63274f0bbbb5883d4cc6251e29"
+token = "87da735bfc5c412b4d618f9ce17296aea09f505d"
+secret = "8388738cb9f3b8fd029f7fe446c36e2cf81d8fd9"
 
 
 def get_location(address):
