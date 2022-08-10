@@ -74,6 +74,9 @@ async def login_page():
         else:
             return render_template('login.html')
 
+@app.route('/tests', methods=['GET'])
+async def tesss():
+    return 'aaaaaaaaaaaa'
 
 @app.route('/moderation', methods=['GET', 'POST'])
 async def send_to_moderation():
