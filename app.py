@@ -12,7 +12,6 @@ import secrets
 from flask_cors import CORS, cross_origin
 from sqlLogin import create_user, find_user_by_mail, find_user_id, find_user_by_id, find_role_id, set_user_role, find_user_role
 from sqlCommands import send_form_to_moderation, get_info_data, delete_info_card, accept_info_card, get_info_accepted_data
-from parser import parse_coordinates
 from geopy.geocoders import Nominatim
 
 
@@ -142,6 +141,19 @@ async def get_coordinates():
     )
     return response
 
+@app.post('/getAddress')
+async def get_address():
+    req = request.get_json()
+    res = req['coord1']
+    lat, lon = res
+    print(lat, lon)
+    #data = getCoordinates.get_address_from_coordinates(latitude, longitude)
+    #response = app.response_class(
+    #    response=json.dumps(data),
+    #    status=200,
+    #    mimetype='application/json'
+    #)
+    return 'response'
 
 @app.get('/marks')
 async def my_mark():
